@@ -12,6 +12,16 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
+router.get('/:id/actions', validateProjectId, (req, res, next) => {
+    const { id } = req.params;
+
+    projectDb.getProjectActions(id)
+        .then(actions => {
+            res.status(200).json(actions)
+        })
+        .catch(next)
+})
+
 router.post('/', validateProjectInfo, (req, res, next) => {
     projectDb.insert(req.body)
         .then(projects => {
@@ -48,6 +58,19 @@ router.delete('/:id', (req, res, next) => {
         .catch(next)
 })
 
+function validateProjectId(req, res, next) {
+    const { id } = req.params;
+
+    projectDb.get(id)
+        .then((project) => {
+            if(project) {
+                next();
+            } else {
+                res.status(404).json({ message: "The project with the specified ID does not exist." });
+            }
+        })
+        .catch(next)
+}
 
 function validateProjectInfo(req, res, next) {
     if (Object.keys(req.body).length) {
