@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
     projectDb.get()
         .then(projects => {
-            res.json(projects)
+            res.status(200).json(projects)
         })
         .catch(next)
 })
@@ -52,6 +52,7 @@ router.delete('/:id', (req, res, next) => {
 function validateProjectInfo(req, res, next) {
     if (Object.keys(req.body).length) {
         const { name, description } = req.body;
+        
         if (name && description) {
             next();
         } else {
