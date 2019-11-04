@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+    - Routing, Middleware
+
 - [ ] Describe Middleware?
+
+    - Middleware are an array of functions that get executed in the order they are introduced into the server code. They are functions executed in the middle after the incoming request then produces an output which could be the final output passed or could be used by the next middleware.
 
 - [ ] Describe a Resource?
 
+    - The things that make up the core of our application i.e Projects, Users, Actions etc.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+    - A status code
+
 - [ ] How can we partition our application into sub-applications?
+
+    - Multiple express application instances using routes
 
 ## Project Setup
 
